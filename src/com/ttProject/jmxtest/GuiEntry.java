@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
+
 import java.awt.GridBagLayout;
 import javax.swing.BorderFactory;
 import javax.swing.border.BevelBorder;
@@ -19,14 +21,15 @@ import javax.swing.JScrollPane;
 
 import com.ttProject.jmxtest.component.JSystemOutTextArea;
 import com.ttProject.jmxtest.controller.MainController;
+import javax.swing.JComboBox;
 
 public class GuiEntry extends JFrame {
-	private GuiEntry self;
 	private static final long serialVersionUID = 1L;
+	private GuiEntry self;
 	private JPanel jContentPane = null;
 	private JTabbedPane TabFrame = null;
 	private JPanel Panel1 = null;
-	private JPanel Contents = null;
+	private JPanel Contents1 = null;
 	private JPanel TitlePanel = null;
 	private JLabel TitleLabel = null;
 	private JLabel RegisterJMXLabel = null;
@@ -42,7 +45,14 @@ public class GuiEntry extends JFrame {
 	private JSystemOutTextArea LogArea = null;
 	private JPanel LogTitlePanel = null;
 	private JLabel LogTitleLabel = null;
-
+	private JPanel SettingPanel = null;
+	private JPanel SettingContents = null;
+	private JPanel SettingLeftGap = null;
+	private JPanel SettingRightGap = null;
+	private JPanel SettingTitlePanel = null;
+	private JLabel SettingTitlaLabel = null;
+	private JLabel LookFeelLabel = null;
+	private JComboBox SkinComboBox = null;
 	/**
 	 * This method initializes TabFrame	
 	 * 	
@@ -52,6 +62,7 @@ public class GuiEntry extends JFrame {
 		if (TabFrame == null) {
 			TabFrame = new JTabbedPane();
 			TabFrame.addTab("Tab1", null, getPanel1(), null);
+			TabFrame.addTab("設定", null, getSettingPanel(), null);
 			TabFrame.addTab("ログ", null, getLogPanel(), null);
 		}
 		return TabFrame;
@@ -67,18 +78,18 @@ public class GuiEntry extends JFrame {
 			Panel1 = new JPanel();
 			Panel1.setLayout(new BorderLayout());
 			Panel1.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED), BorderFactory.createEmptyBorder(10, 30, 30, 30)));
-			Panel1.add(getContents(), BorderLayout.NORTH);
+			Panel1.add(getContents1(), BorderLayout.NORTH);
 		}
 		return Panel1;
 	}
 
 	/**
-	 * This method initializes Contents	
+	 * This method initializes Contents1	
 	 * 	
 	 * @return javax.swing.JPanel	
 	 */
-	private JPanel getContents() {
-		if (Contents == null) {
+	private JPanel getContents1() {
+		if (Contents1 == null) {
 			GridBagConstraints gridBagConstraints8 = new GridBagConstraints();
 			gridBagConstraints8.gridx = 3;
 			gridBagConstraints8.gridy = 2;
@@ -118,20 +129,20 @@ public class GuiEntry extends JFrame {
 			gridBagConstraints.gridwidth = 5;
 			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 			gridBagConstraints.gridy = 0;
-			Contents = new JPanel();
-			Contents.setLayout(new GridBagLayout());
-			Contents.setBackground(Color.white);
-			Contents.add(getLeftGap1(), gridBagConstraints2);
-			Contents.add(getRightGap1(), gridBagConstraints3);
-			Contents.add(getTitlePanel(), gridBagConstraints);
-			Contents.add(RegisterJMXLabel, gridBagConstraints1);
-			Contents.add(getRegisterJMXButton(), gridBagConstraints4);
-			Contents.add(getRegisterJMXField(), gridBagConstraints5);
-			Contents.add(RemoveJMXLabel, gridBagConstraints6);
-			Contents.add(getRemoveJMXField(), gridBagConstraints7);
-			Contents.add(getRemoveJMXButton(), gridBagConstraints8);
+			Contents1 = new JPanel();
+			Contents1.setLayout(new GridBagLayout());
+			Contents1.setBackground(Color.white);
+			Contents1.add(getLeftGap1(), gridBagConstraints2);
+			Contents1.add(getRightGap1(), gridBagConstraints3);
+			Contents1.add(getTitlePanel(), gridBagConstraints);
+			Contents1.add(RegisterJMXLabel, gridBagConstraints1);
+			Contents1.add(getRegisterJMXButton(), gridBagConstraints4);
+			Contents1.add(getRegisterJMXField(), gridBagConstraints5);
+			Contents1.add(RemoveJMXLabel, gridBagConstraints6);
+			Contents1.add(getRemoveJMXField(), gridBagConstraints7);
+			Contents1.add(getRemoveJMXButton(), gridBagConstraints8);
 		}
-		return Contents;
+		return Contents1;
 	}
 
 	/**
@@ -302,6 +313,132 @@ public class GuiEntry extends JFrame {
 			LogTitlePanel.add(LogTitleLabel, BorderLayout.NORTH);
 		}
 		return LogTitlePanel;
+	}
+
+	/**
+	 * This method initializes SettingPanel	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */
+	private JPanel getSettingPanel() {
+		if (SettingPanel == null) {
+			SettingPanel = new JPanel();
+			SettingPanel.setLayout(new BorderLayout());
+			SettingPanel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED), BorderFactory.createEmptyBorder(10, 30, 30, 30)));
+			SettingPanel.add(getSettingContents(), BorderLayout.NORTH);
+		}
+		return SettingPanel;
+	}
+
+	/**
+	 * This method initializes SettingContents	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */
+	private JPanel getSettingContents() {
+		if (SettingContents == null) {
+			GridBagConstraints gridBagConstraints13 = new GridBagConstraints();
+			gridBagConstraints13.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints13.gridy = 2;
+			gridBagConstraints13.weightx = 1.0;
+			gridBagConstraints13.gridx = 2;
+			GridBagConstraints gridBagConstraints12 = new GridBagConstraints();
+			gridBagConstraints12.gridx = 1;
+			gridBagConstraints12.gridy = 2;
+			LookFeelLabel = new JLabel();
+			LookFeelLabel.setText("スキン:");
+			LookFeelLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+			GridBagConstraints gridBagConstraints11 = new GridBagConstraints();
+			gridBagConstraints11.gridx = 6;
+			gridBagConstraints11.gridy = 0;
+			GridBagConstraints gridBagConstraints10 = new GridBagConstraints();
+			gridBagConstraints10.gridx = 0;
+			gridBagConstraints10.gridy = 0;
+			GridBagConstraints gridBagConstraints9 = new GridBagConstraints();
+			gridBagConstraints9.gridx = 0;
+			gridBagConstraints9.gridwidth = 7;
+			gridBagConstraints9.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints9.gridy = 1;
+			SettingContents = new JPanel();
+			SettingContents.setLayout(new GridBagLayout());
+			SettingContents.setBackground(Color.white);
+			SettingContents.add(getSettingLeftGap(), gridBagConstraints10);
+			SettingContents.add(getSettingRightGap(), gridBagConstraints11);
+			SettingContents.add(getSettingTitlePanel(), gridBagConstraints9);
+			SettingContents.add(LookFeelLabel, gridBagConstraints12);
+			SettingContents.add(getSkinComboBox(), gridBagConstraints13);
+		}
+		return SettingContents;
+	}
+
+	/**
+	 * This method initializes SettingLeftGap	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */
+	private JPanel getSettingLeftGap() {
+		if (SettingLeftGap == null) {
+			SettingLeftGap = new JPanel();
+			SettingLeftGap.setLayout(new GridBagLayout());
+			SettingLeftGap.setPreferredSize(new Dimension(15, 0));
+		}
+		return SettingLeftGap;
+	}
+
+	/**
+	 * This method initializes SettingRightGap	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */
+	private JPanel getSettingRightGap() {
+		if (SettingRightGap == null) {
+			SettingRightGap = new JPanel();
+			SettingRightGap.setLayout(new GridBagLayout());
+			SettingRightGap.setPreferredSize(new Dimension(15, 0));
+		}
+		return SettingRightGap;
+	}
+
+	/**
+	 * This method initializes SettingTitlePanel	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */
+	private JPanel getSettingTitlePanel() {
+		if (SettingTitlePanel == null) {
+			SettingTitlaLabel = new JLabel();
+			SettingTitlaLabel.setText("設定");
+			SettingTitlePanel = new JPanel();
+			SettingTitlePanel.setLayout(new BorderLayout());
+			SettingTitlePanel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, Color.gray), BorderFactory.createEmptyBorder(3, 15, 0, 0)));
+			SettingTitlePanel.setBackground(Color.white);
+			SettingTitlePanel.add(SettingTitlaLabel, BorderLayout.NORTH);
+		}
+		return SettingTitlePanel;
+	}
+
+	/**
+	 * This method initializes SkinComboBox	
+	 * 	
+	 * @return javax.swing.JComboBox	
+	 */
+	private JComboBox getSkinComboBox() {
+		if (SkinComboBox == null) {
+			SkinComboBox = new JComboBox();
+			String defaultName = UIManager.getLookAndFeel().getName();
+			for(UIManager.LookAndFeelInfo lafInfo : UIManager.getInstalledLookAndFeels()) {
+				SkinComboBox.addItem(lafInfo.getName());
+			}
+			SkinComboBox.setSelectedItem(defaultName);
+			SkinComboBox.addItemListener(new java.awt.event.ItemListener() {
+				public void itemStateChanged(java.awt.event.ItemEvent e) {
+					System.out.println("itemStateChanged()"); // TODO Auto-generated Event stub itemStateChanged()
+					MainController mcontroller = new MainController(self);
+					mcontroller.changeSkin(SkinComboBox.getSelectedItem().toString());
+				}
+			});
+		}
+		return SkinComboBox;
 	}
 
 	/**
